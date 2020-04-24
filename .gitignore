@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs/PortTester/v16
+/PortTester/bin
+/PortTester/obj
+/PortTesterSetup/Debug
+/PortTesterSetup/Release
