@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.IO;
 
 namespace PortTester
 {
@@ -21,6 +22,10 @@ namespace PortTester
         static List<StopBits> stopBits = new List<StopBits> { StopBits.One, StopBits.OnePointFive, StopBits.Two };
         static List<Handshake> handshakes = Enum.GetValues(typeof(Handshake)).Cast<Handshake>().ToList();
 
+        const int bufferSize = 1024;
+
+        byte[] receiveBuffer = new byte[bufferSize];
+        Stream stream;
         Thread th;
 
         public SerialPortTester()
@@ -74,8 +79,17 @@ namespace PortTester
                 serialPort1.StopBits = (StopBits)comboBox4.SelectedValue;
                 serialPort1.Handshake = (Handshake)comboBox5.SelectedValue;
                 serialPort1.ParityReplace = 63; //?
+                serialPort1.RtsEnable = checkBoxRts.Checked;
+                serialPort1.DtrEnable = checkBoxDtr.Checked;
+                serialPort1.DataReceived += new SerialDataReceivedEventHandler(serialPort1_DataReceived);
+                serialPort1.ErrorReceived += new SerialErrorReceivedEventHandler(serialPort1_ErrorReceived);
                 serialPort1.Open();
                 //th.Start();
+
+                serialPort1.BaseStream.ReadTimeout = 0;
+                //var t = serialPort1.BaseStream.ReadAsync(receiveBuffer, 0, receiveBuffer.Length);
+                //t.ContinueWith(ReadSerialStream);
+
                 LogInfo("Ouverture port : OK");
             }
             catch (Exception ex)
@@ -118,25 +132,66 @@ namespace PortTester
         private void comboBoxPortNames_SelectedIndexChanged(object sender, EventArgs e)
         {
             serialPort1 = new SerialPort((string)comboBoxPortNames.SelectedValue);
-            serialPort1.DataReceived += new SerialDataReceivedEventHandler(serialPortReel_DataReceived);
+            serialPort1.ReadTimeout = 0;
+            
             comboBox1.SelectedItem = serialPort1.BaudRate;
             comboBox2.SelectedItem = serialPort1.DataBits;
             comboBox3.SelectedItem = serialPort1.Parity;
             comboBox4.SelectedItem = serialPort1.StopBits;
             comboBox5.SelectedItem = serialPort1.Handshake;
+            checkBoxRts.Checked = serialPort1.RtsEnable;
+            checkBoxDtr.Checked = serialPort1.DtrEnable;
         }
 
-        private void serialPortReel_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             LogInfo("Données reçues...");
             LogReceive(serialPort1.ReadExisting());
         }
+
+        private void serialPort1_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        {
+            LogInfo("Erreur reçue...");
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             textBoxStatut.BackColor = textBoxStatut.BackColor;
             textBoxStatut.ForeColor = serialPort1.IsOpen ? Color.Green : Color.Red;
             textBoxStatut.Text = serialPort1.IsOpen ? "Ouvert" : "Fermé";
+            if (serialPort1.IsOpen)
+            {
+                checkBoxCts.Checked = serialPort1.CtsHolding;
+                checkBoxDsr.Checked = serialPort1.DsrHolding;
+            }
+            //
+        }
+
+        private void ReadSerialStream(Task<int> t)
+        {
+            var bytesReceived = new byte[t.Result];
+            Array.Copy(receiveBuffer, bytesReceived, t.Result);
+
+            LogInfo("Données reçues...");
+            LogReceive(Encoding.Default.GetString(bytesReceived));
+        }
+
+        private void ReadSerialBytes()
+        {
+            if (!serialPort1.IsOpen)
+                return;
+
+            if (serialPort1.BytesToRead > 0)
+            {
+                var receiveBuffer = new byte[serialPort1.ReadBufferSize];
+                var numBytesRead = serialPort1.Read(receiveBuffer, 0, serialPort1.ReadBufferSize);
+                var bytesReceived = new byte[numBytesRead];
+                Array.Copy(receiveBuffer, bytesReceived, numBytesRead);
+
+                LogInfo("Données reçues...");
+                LogReceive(Encoding.Default.GetString(bytesReceived));
+            }
         }
 
         private void buttonClear1_Click(object sender, EventArgs e)
