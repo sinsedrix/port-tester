@@ -16,7 +16,7 @@ namespace PortTester
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormSerial());
+            Application.Run(new FormPortTester());
         }
     }
 }
