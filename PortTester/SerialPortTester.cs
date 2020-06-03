@@ -1,9 +1,13 @@
 ﻿using System;
+using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace PortTester
@@ -20,10 +24,8 @@ namespace PortTester
         public SerialPortTester()
         {
             InitializeComponent();
+            InitNames();
 
-            List<string> names = SerialPort.GetPortNames().ToList();
-            names.Insert(0, "-- Sélectionner --");
-            comboBoxPortNames.DataSource = names;
             comboBox1.DataSource = baudRates;
             comboBox2.DataSource = datasBits;
             comboBox3.DataSource = parities;
@@ -32,8 +34,6 @@ namespace PortTester
 
             timer1.Interval = 500;
             timer1.Start();
-
-
         }
 
         private void LogInfo(string msg)
@@ -69,7 +69,7 @@ namespace PortTester
                 serialPort1.StopBits = (StopBits)comboBox4.SelectedValue;
                 serialPort1.Handshake = (Handshake)comboBox5.SelectedValue;
                 serialPort1.ParityReplace = 63; //?
-                serialPort1.NewLine = "\n";
+                serialPort1.NewLine = Regex.Unescape(textBoxNewLine.Text);
                 serialPort1.RtsEnable = checkBoxRts.Checked;
                 serialPort1.DtrEnable = checkBoxDtr.Checked;
                 serialPort1.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);
@@ -91,7 +91,6 @@ namespace PortTester
             try 
             {
                 LogInfo("Fermeture port... ");
-                //th.Abort();
                 serialPort1.Close();
                 LogInfo("Fermeture port OK ");
             }
@@ -103,9 +102,11 @@ namespace PortTester
 
         private void ComboBoxPortNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            serialPort1 = new SerialPort((string)comboBoxPortNames.SelectedValue);
-            serialPort1.ReadTimeout = 0;
-            
+            serialPort1 = new SerialPort((string)comboBoxPortNames.SelectedValue)
+            {
+                ReadTimeout = 0
+            };
+
             comboBox1.SelectedItem = serialPort1.BaudRate;
             comboBox2.SelectedItem = serialPort1.DataBits;
             comboBox3.SelectedItem = serialPort1.Parity;
@@ -113,6 +114,8 @@ namespace PortTester
             comboBox5.SelectedItem = serialPort1.Handshake;
             checkBoxRts.Checked = serialPort1.RtsEnable;
             checkBoxDtr.Checked = serialPort1.DtrEnable;
+
+            textBoxNewLine.Text = Regex.Escape(serialPort1.NewLine);
         }
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -162,6 +165,30 @@ namespace PortTester
         private void ButtonSend_Click(object sender, EventArgs e)
         {
             serialPort1.Write(textBoxSend.Text);
+        }
+
+        private void ButtonRefreshNames_Click(object sender, EventArgs e)
+        {
+            InitNames();
+        }
+
+        void InitNames()
+        {
+            List<string> names = SerialPort.GetPortNames().ToList();
+            names.Insert(0, "-- Sélectionner --");
+            comboBoxPortNames.DataSource = names;
+        }
+
+        private static string ToLiteral(string input)
+        {
+            using (var writer = new StringWriter())
+            {
+                using (var provider = CodeDomProvider.CreateProvider("CSharp"))
+                {
+                    provider.GenerateCodeFromExpression(new CodePrimitiveExpression(input), writer, null);
+                    return writer.ToString().Replace("\"", "");
+                }
+            }
         }
     }
 

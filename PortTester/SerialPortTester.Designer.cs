@@ -51,6 +51,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.checkBoxRts = new System.Windows.Forms.CheckBox();
             this.checkBoxDtr = new System.Windows.Forms.CheckBox();
+            this.buttonRefreshNames = new System.Windows.Forms.Button();
             this.textBoxStatut = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -71,6 +72,8 @@
             this.textBoxSend = new System.Windows.Forms.TextBox();
             this.buttonSend = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxNewLine = new System.Windows.Forms.TextBox();
             this.groupBoxParams.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBoxReceived.SuspendLayout();
@@ -97,9 +100,9 @@
             this.groupBoxParams.Controls.Add(this.tableLayoutPanel2);
             this.groupBoxParams.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxParams.Location = new System.Drawing.Point(3, 3);
-            this.groupBoxParams.MinimumSize = new System.Drawing.Size(380, 390);
+            this.groupBoxParams.MinimumSize = new System.Drawing.Size(420, 390);
             this.groupBoxParams.Name = "groupBoxParams";
-            this.groupBoxParams.Size = new System.Drawing.Size(380, 390);
+            this.groupBoxParams.Size = new System.Drawing.Size(420, 420);
             this.groupBoxParams.TabIndex = 13;
             this.groupBoxParams.TabStop = false;
             this.groupBoxParams.Text = "Paramètres";
@@ -109,9 +112,10 @@
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
@@ -124,16 +128,19 @@
             this.tableLayoutPanel2.Controls.Add(this.comboBoxPortNames, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.comboBox5, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.buttonOpen, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.buttonClose, 1, 8);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.checkBoxRts, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.checkBoxDtr, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.buttonRefreshNames, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.buttonOpen, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.buttonClose, 1, 9);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.textBoxNewLine, 1, 8);
             this.tableLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowCount = 10;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -143,7 +150,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(365, 365);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(405, 395);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label4
@@ -211,9 +219,9 @@
             this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(222, 163);
+            this.comboBox4.Location = new System.Drawing.Point(225, 163);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(138, 28);
+            this.comboBox4.Size = new System.Drawing.Size(135, 28);
             this.comboBox4.TabIndex = 7;
             // 
             // comboBox3
@@ -221,9 +229,9 @@
             this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(222, 123);
+            this.comboBox3.Location = new System.Drawing.Point(225, 123);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(138, 28);
+            this.comboBox3.Size = new System.Drawing.Size(135, 28);
             this.comboBox3.TabIndex = 6;
             // 
             // comboBox2
@@ -231,9 +239,9 @@
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(222, 83);
+            this.comboBox2.Location = new System.Drawing.Point(225, 83);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(138, 28);
+            this.comboBox2.Size = new System.Drawing.Size(135, 28);
             this.comboBox2.TabIndex = 5;
             // 
             // comboBox1
@@ -241,9 +249,9 @@
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(222, 43);
+            this.comboBox1.Location = new System.Drawing.Point(225, 43);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 28);
+            this.comboBox1.Size = new System.Drawing.Size(135, 28);
             this.comboBox1.TabIndex = 4;
             // 
             // comboBoxPortNames
@@ -251,9 +259,9 @@
             this.comboBoxPortNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxPortNames.FormattingEnabled = true;
-            this.comboBoxPortNames.Location = new System.Drawing.Point(222, 3);
+            this.comboBoxPortNames.Location = new System.Drawing.Point(225, 3);
             this.comboBoxPortNames.Name = "comboBoxPortNames";
-            this.comboBoxPortNames.Size = new System.Drawing.Size(138, 28);
+            this.comboBoxPortNames.Size = new System.Drawing.Size(135, 28);
             this.comboBoxPortNames.TabIndex = 9;
             this.comboBoxPortNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPortNames_SelectedIndexChanged);
             // 
@@ -274,14 +282,14 @@
             this.comboBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(222, 203);
+            this.comboBox5.Location = new System.Drawing.Point(225, 203);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(138, 28);
+            this.comboBox5.Size = new System.Drawing.Size(135, 28);
             this.comboBox5.TabIndex = 14;
             // 
             // buttonOpen
             // 
-            this.buttonOpen.Location = new System.Drawing.Point(3, 323);
+            this.buttonOpen.Location = new System.Drawing.Point(3, 363);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.Size = new System.Drawing.Size(75, 30);
             this.buttonOpen.TabIndex = 11;
@@ -291,7 +299,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(222, 323);
+            this.buttonClose.Location = new System.Drawing.Point(225, 363);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 30);
             this.buttonClose.TabIndex = 12;
@@ -306,9 +314,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(3, 240);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(169, 40);
+            this.label9.Size = new System.Drawing.Size(177, 40);
             this.label9.TabIndex = 19;
-            this.label9.Text = "Rts (Request to Send)";
+            this.label9.Text = "Rts (Request to Send) :";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label10
@@ -318,9 +326,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(3, 280);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(194, 40);
+            this.label10.Size = new System.Drawing.Size(202, 40);
             this.label10.TabIndex = 20;
-            this.label10.Text = "Dtr (Data Terminal Ready)";
+            this.label10.Text = "Dtr (Data Terminal Ready) :";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // checkBoxRts
@@ -328,7 +336,7 @@
             this.checkBoxRts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxRts.AutoSize = true;
-            this.checkBoxRts.Location = new System.Drawing.Point(222, 243);
+            this.checkBoxRts.Location = new System.Drawing.Point(225, 243);
             this.checkBoxRts.Name = "checkBoxRts";
             this.checkBoxRts.Size = new System.Drawing.Size(15, 34);
             this.checkBoxRts.TabIndex = 21;
@@ -339,11 +347,24 @@
             this.checkBoxDtr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxDtr.AutoSize = true;
-            this.checkBoxDtr.Location = new System.Drawing.Point(222, 283);
+            this.checkBoxDtr.Location = new System.Drawing.Point(225, 283);
             this.checkBoxDtr.Name = "checkBoxDtr";
             this.checkBoxDtr.Size = new System.Drawing.Size(15, 34);
             this.checkBoxDtr.TabIndex = 22;
             this.checkBoxDtr.UseVisualStyleBackColor = true;
+            // 
+            // buttonRefreshNames
+            // 
+            this.buttonRefreshNames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRefreshNames.Image = global::SerialPortsTester.Properties.Resources.icons8_synchroniser_24;
+            this.buttonRefreshNames.Location = new System.Drawing.Point(366, 3);
+            this.buttonRefreshNames.Name = "buttonRefreshNames";
+            this.buttonRefreshNames.Size = new System.Drawing.Size(36, 34);
+            this.buttonRefreshNames.TabIndex = 23;
+            this.buttonRefreshNames.UseVisualStyleBackColor = true;
+            this.buttonRefreshNames.Click += new System.EventHandler(this.ButtonRefreshNames_Click);
             // 
             // textBoxStatut
             // 
@@ -354,7 +375,7 @@
             this.textBoxStatut.Location = new System.Drawing.Point(3, 3);
             this.textBoxStatut.Name = "textBoxStatut";
             this.textBoxStatut.ReadOnly = true;
-            this.textBoxStatut.Size = new System.Drawing.Size(359, 26);
+            this.textBoxStatut.Size = new System.Drawing.Size(399, 26);
             this.textBoxStatut.TabIndex = 0;
             // 
             // label7
@@ -385,7 +406,7 @@
             // 
             this.checkBoxCts.AutoSize = true;
             this.checkBoxCts.Enabled = false;
-            this.checkBoxCts.Location = new System.Drawing.Point(185, 35);
+            this.checkBoxCts.Location = new System.Drawing.Point(205, 35);
             this.checkBoxCts.Name = "checkBoxCts";
             this.checkBoxCts.Size = new System.Drawing.Size(15, 14);
             this.checkBoxCts.TabIndex = 17;
@@ -395,7 +416,7 @@
             // 
             this.checkBoxDsr.AutoSize = true;
             this.checkBoxDsr.Enabled = false;
-            this.checkBoxDsr.Location = new System.Drawing.Point(185, 71);
+            this.checkBoxDsr.Location = new System.Drawing.Point(205, 71);
             this.checkBoxDsr.Name = "checkBoxDsr";
             this.checkBoxDsr.Size = new System.Drawing.Size(15, 14);
             this.checkBoxDsr.TabIndex = 18;
@@ -408,7 +429,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxReceived.Controls.Add(this.tableLayoutPanel4);
             this.groupBoxReceived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxReceived.Location = new System.Drawing.Point(389, 228);
+            this.groupBoxReceived.Location = new System.Drawing.Point(429, 228);
             this.groupBoxReceived.Name = "groupBoxReceived";
             this.groupBoxReceived.Size = new System.Drawing.Size(383, 219);
             this.groupBoxReceived.TabIndex = 12;
@@ -467,7 +488,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxLogs.Controls.Add(this.tableLayoutPanel3);
             this.groupBoxLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxLogs.Location = new System.Drawing.Point(389, 3);
+            this.groupBoxLogs.Location = new System.Drawing.Point(429, 3);
             this.groupBoxLogs.Name = "groupBoxLogs";
             this.groupBoxLogs.Size = new System.Drawing.Size(383, 219);
             this.groupBoxLogs.TabIndex = 11;
@@ -526,9 +547,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxStatus.Controls.Add(this.tableLayoutPanel5);
             this.groupBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxStatus.Location = new System.Drawing.Point(3, 399);
+            this.groupBoxStatus.Location = new System.Drawing.Point(3, 429);
             this.groupBoxStatus.Name = "groupBoxStatus";
-            this.groupBoxStatus.Size = new System.Drawing.Size(380, 130);
+            this.groupBoxStatus.Size = new System.Drawing.Size(420, 130);
             this.groupBoxStatus.TabIndex = 14;
             this.groupBoxStatus.TabStop = false;
             this.groupBoxStatus.Text = "Statut";
@@ -552,7 +573,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(365, 105);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(405, 105);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBoxSend
@@ -560,7 +581,7 @@
             this.groupBoxSend.Controls.Add(this.tableLayoutPanel6);
             this.flowLayoutPanel1.SetFlowBreak(this.groupBoxSend, true);
             this.groupBoxSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxSend.Location = new System.Drawing.Point(389, 453);
+            this.groupBoxSend.Location = new System.Drawing.Point(429, 453);
             this.groupBoxSend.Name = "groupBoxSend";
             this.groupBoxSend.Size = new System.Drawing.Size(383, 110);
             this.groupBoxSend.TabIndex = 15;
@@ -618,8 +639,27 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 6);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(784, 570);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(822, 570);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 320);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 40);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Nouvelle ligne :";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxNewLine
+            // 
+            this.textBoxNewLine.Location = new System.Drawing.Point(225, 323);
+            this.textBoxNewLine.Name = "textBoxNewLine";
+            this.textBoxNewLine.Size = new System.Drawing.Size(135, 26);
+            this.textBoxNewLine.TabIndex = 25;
             // 
             // SerialPortTester
             // 
@@ -628,7 +668,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "SerialPortTester";
-            this.Size = new System.Drawing.Size(809, 598);
+            this.Size = new System.Drawing.Size(831, 579);
             this.groupBoxParams.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -692,5 +732,8 @@
         private System.Windows.Forms.TextBox textBoxSend;
         private System.Windows.Forms.Button buttonSend;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button buttonRefreshNames;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxNewLine;
     }
 }
