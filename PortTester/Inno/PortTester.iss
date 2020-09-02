@@ -62,12 +62,9 @@ DefaultGroupName={#MyAppName}
 DefaultDirName= C:\{#MyAppPublisher}\{#MyAppName}
 OutputDir={#MyAppSourceFolder}\{#MyAppVsConfig}\Inno
 SourceDir=.
-SetupIconFile=iris_inst.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-WizardImageFile=wizard.bmp
-WizardSmallImageFile=wizard_small.bmp
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
