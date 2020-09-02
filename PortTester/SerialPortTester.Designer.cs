@@ -45,13 +45,15 @@
             this.comboBoxPortNames = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.buttonOpen = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.checkBoxRts = new System.Windows.Forms.CheckBox();
             this.checkBoxDtr = new System.Windows.Forms.CheckBox();
             this.buttonRefreshNames = new System.Windows.Forms.Button();
+            this.buttonOpen = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxNewLine = new System.Windows.Forms.TextBox();
             this.textBoxStatut = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -71,9 +73,10 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxSend = new System.Windows.Forms.TextBox();
             this.buttonSend = new System.Windows.Forms.Button();
+            this.buttonSendEnq = new System.Windows.Forms.Button();
+            this.buttonSendAck = new System.Windows.Forms.Button();
+            this.buttonSendEot = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBoxNewLine = new System.Windows.Forms.TextBox();
             this.groupBoxParams.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBoxReceived.SuspendLayout();
@@ -287,26 +290,6 @@
             this.comboBox5.Size = new System.Drawing.Size(135, 28);
             this.comboBox5.TabIndex = 14;
             // 
-            // buttonOpen
-            // 
-            this.buttonOpen.Location = new System.Drawing.Point(3, 363);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(75, 30);
-            this.buttonOpen.TabIndex = 11;
-            this.buttonOpen.Text = "Ouvrir";
-            this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.ButtonOpen_Click);
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Location = new System.Drawing.Point(225, 363);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 30);
-            this.buttonClose.TabIndex = 12;
-            this.buttonClose.Text = "Fermer";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-            // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -358,13 +341,52 @@
             this.buttonRefreshNames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRefreshNames.Image = global::SerialPortsTester.Properties.Resources.icons8_synchroniser_24;
+            this.buttonRefreshNames.Image = global::PortTester.Properties.Resources.icons8_synchroniser_24;
             this.buttonRefreshNames.Location = new System.Drawing.Point(366, 3);
             this.buttonRefreshNames.Name = "buttonRefreshNames";
             this.buttonRefreshNames.Size = new System.Drawing.Size(36, 34);
             this.buttonRefreshNames.TabIndex = 23;
             this.buttonRefreshNames.UseVisualStyleBackColor = true;
             this.buttonRefreshNames.Click += new System.EventHandler(this.ButtonRefreshNames_Click);
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Location = new System.Drawing.Point(3, 363);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(75, 30);
+            this.buttonOpen.TabIndex = 11;
+            this.buttonOpen.Text = "Ouvrir";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.ButtonOpen_Click);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(225, 363);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(75, 30);
+            this.buttonClose.TabIndex = 12;
+            this.buttonClose.Text = "Fermer";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 320);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 40);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Nouvelle ligne :";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxNewLine
+            // 
+            this.textBoxNewLine.Location = new System.Drawing.Point(225, 323);
+            this.textBoxNewLine.Name = "textBoxNewLine";
+            this.textBoxNewLine.Size = new System.Drawing.Size(135, 26);
+            this.textBoxNewLine.TabIndex = 25;
             // 
             // textBoxStatut
             // 
@@ -593,10 +615,16 @@
             this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel6.ColumnCount = 4;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel6.Controls.Add(this.textBoxSend, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.buttonSend, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.buttonSendEnq, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.buttonSendAck, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.buttonSendEot, 3, 1);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(6, 20);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
@@ -610,6 +638,7 @@
             this.textBoxSend.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel6.SetColumnSpan(this.textBoxSend, 4);
             this.textBoxSend.Location = new System.Drawing.Point(3, 3);
             this.textBoxSend.Name = "textBoxSend";
             this.textBoxSend.Size = new System.Drawing.Size(365, 26);
@@ -617,13 +646,52 @@
             // 
             // buttonSend
             // 
+            this.buttonSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSend.AutoSize = true;
             this.buttonSend.Location = new System.Drawing.Point(3, 43);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(75, 30);
+            this.buttonSend.Size = new System.Drawing.Size(76, 38);
             this.buttonSend.TabIndex = 1;
             this.buttonSend.Text = "Envoyer";
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.ButtonSend_Click);
+            // 
+            // buttonSendEnq
+            // 
+            this.buttonSendEnq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSendEnq.Location = new System.Drawing.Point(95, 43);
+            this.buttonSendEnq.Name = "buttonSendEnq";
+            this.buttonSendEnq.Size = new System.Drawing.Size(60, 38);
+            this.buttonSendEnq.TabIndex = 1;
+            this.buttonSendEnq.Text = "ENQ";
+            this.buttonSendEnq.UseVisualStyleBackColor = true;
+            this.buttonSendEnq.Click += new System.EventHandler(this.ButtonSendEnq_Click);
+            // 
+            // buttonSendAck
+            // 
+            this.buttonSendAck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSendAck.Location = new System.Drawing.Point(187, 43);
+            this.buttonSendAck.Name = "buttonSendAck";
+            this.buttonSendAck.Size = new System.Drawing.Size(60, 38);
+            this.buttonSendAck.TabIndex = 1;
+            this.buttonSendAck.Text = "ACK";
+            this.buttonSendAck.UseVisualStyleBackColor = true;
+            this.buttonSendAck.Click += new System.EventHandler(this.ButtonSendAck_Click);
+            // 
+            // buttonSendAck
+            // 
+            this.buttonSendEot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSendEot.Location = new System.Drawing.Point(187, 43);
+            this.buttonSendEot.Name = "buttonSendEot";
+            this.buttonSendEot.Size = new System.Drawing.Size(60, 38);
+            this.buttonSendEot.TabIndex = 1;
+            this.buttonSendEot.Text = "EOT";
+            this.buttonSendEot.UseVisualStyleBackColor = true;
+            this.buttonSendEot.Click += new System.EventHandler(this.ButtonSendEot_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -641,25 +709,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(822, 570);
             this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 320);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(114, 40);
-            this.label11.TabIndex = 24;
-            this.label11.Text = "Nouvelle ligne :";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBoxNewLine
-            // 
-            this.textBoxNewLine.Location = new System.Drawing.Point(225, 323);
-            this.textBoxNewLine.Name = "textBoxNewLine";
-            this.textBoxNewLine.Size = new System.Drawing.Size(135, 26);
-            this.textBoxNewLine.TabIndex = 25;
             // 
             // SerialPortTester
             // 
@@ -731,6 +780,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TextBox textBoxSend;
         private System.Windows.Forms.Button buttonSend;
+        private System.Windows.Forms.Button buttonSendEnq;
+        private System.Windows.Forms.Button buttonSendAck;
+        private System.Windows.Forms.Button buttonSendEot;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonRefreshNames;
         private System.Windows.Forms.Label label11;

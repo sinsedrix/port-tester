@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerialPortsTester;
+using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -165,6 +167,21 @@ namespace PortTester
         private void ButtonSend_Click(object sender, EventArgs e)
         {
             serialPort1.Write(textBoxSend.Text);
+        }
+
+        private void ButtonSendEnq_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write(Encoding.Default.GetString(new byte[] { Ascii.ENQ }));
+        }
+
+        private void ButtonSendAck_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write(Encoding.Default.GetString(new byte[] { Ascii.ACK }));
+        }
+
+        private void ButtonSendEot_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write(Encoding.Default.GetString(new byte[] { Ascii.EOT }));
         }
 
         private void ButtonRefreshNames_Click(object sender, EventArgs e)
