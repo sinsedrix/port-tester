@@ -91,6 +91,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Inno\scripts\isxdl\french.ini" />
+    <None Include="Inno\scripts\isxdl\french2.ini" />
+    <None Include="Inno\scripts\isxdl\french3.ini" />
+    <None Include="Inno\scripts\products.pas" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,9 +117,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\icons8-synchroniser-24.png" />
+    <Content Include="Inno\PortTester.iss" />
+    <Content Include="Inno\scripts\isxdl\isxdl.dll" />
+    <Content Include="Inno\scripts\isxdl\isxdl.iss" />
+    <Content Include="Inno\scripts\lang\french.iss" />
+    <Content Include="Inno\scripts\products.iss" />
+    <Content Include="Inno\scripts\products\dotnetfx45.iss" />
+    <Content Include="Inno\scripts\products\dotnetfxversion.iss" />
+    <Content Include="Inno\scripts\products\msi31.iss" />
+    <Content Include="Inno\scripts\products\msi45.iss" />
+    <Content Include="Inno\scripts\products\msiproduct.iss" />
+    <Content Include="Inno\scripts\products\stringversion.iss" />
+    <Content Include="Inno\scripts\products\wic.iss" />
+    <Content Include="Inno\scripts\products\winversion.iss" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Inno\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

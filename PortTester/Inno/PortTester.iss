@@ -13,8 +13,6 @@
 #define use_msi45
 #define use_wic
 
-#define use_dotnetfx45
-
 // supported languages
 #include "scripts\lang\french.iss"
 
@@ -37,10 +35,6 @@
 #include "scripts\products\wic.iss"
 #endif
 
-#ifdef use_dotnetfx45
-#include "scripts\products\dotnetfx45.iss"
-#endif
-
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
@@ -60,7 +54,7 @@ DisableProgramGroupPage=yes
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}-Setup
 DefaultGroupName={#MyAppName}
 DefaultDirName= C:\{#MyAppPublisher}\{#MyAppName}
-OutputDir={#MyAppSourceFolder}\{#MyAppVsConfig}\Inno
+OutputDir=bin
 SourceDir=.
 Compression=lzma
 SolidCompression=yes
@@ -80,10 +74,6 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall
 
-[CustomMessages]
-DependenciesDir=MyProgramDependencies
-WindowsServicePack=Windows %1 Service Pack %2
-
 [Code]
 function InitializeSetup(): Boolean;
 begin
@@ -98,10 +88,6 @@ begin
 #endif
 #ifdef use_wic
 	wic();
-#endif
-
-#ifdef use_dotnetfx45
-	dotnetfx45(50); // install if version < 4.6.0
 #endif
 
 	Result := true;
